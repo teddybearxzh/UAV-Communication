@@ -1,14 +1,14 @@
 function G = g(total_cell, m, k, n, l, height, M)
 
-%²ÎÊýËµÃ÷£º
-%total_cell£ºcell½á¹¹£¬°üº¬UAVµÄcellÖÐÐÄµã£¬UAVÎ»ÖÃ·Ö²¼£¬ÄÚ²¿ÓÃ»§·Ö²¼
-%m£¬n£ºUAVÐòºÅ
-%k£ºUAVÄÚ²¿ÓÃ»§ÐòºÅ
-%l£ºhovering timeÐòºÅ
-%height£ºUAV·ÉÐÐ¸ß¶È
-%M£ºUAVÎ»ÖÃ¸öÊý
+%parametersï¼š
+%total_cellï¼šcell information
+%mï¼Œnï¼šUAV index
+%kï¼šUAV internal user index
+%lï¼šhovering time index
+%heightï¼šUAV height
+%Mï¼šUAV location number
 
-    %²ÎÊý³õÊ¼»¯ from[12]
+    %initial from[12]
     LOS = 0.1;
     NLOS = 21;
     a = 5.0188;
@@ -16,16 +16,17 @@ function G = g(total_cell, m, k, n, l, height, M)
     f = 2000000000;
     c = 300000000;
     
-    %Æ½Ãæ¾àÀë
+    %plane distance
     if mod(l,M)==0
         d_2d = norm(total_cell{m}{2}{M} - total_cell{n}{3}{k});
     else
         d_2d = norm(total_cell{m}{2}{mod(l,M)} - total_cell{n}{3}{k});
     end
-    %¿Õ¼ä¾àÀë
+    
+    %space distance
     d = sqrt(d_2d^2 + height^2);
     
-    %¾ßÌå¼ÆËã
+    %calculation
     A = LOS - NLOS;
     B = 20*log10(d) + 20*log10(4*pi*f/c) + NLOS;
     theta = 180/pi * asin(height/d);
