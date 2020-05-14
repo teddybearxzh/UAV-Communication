@@ -3,11 +3,11 @@ close all
 clear all
 clc
 
-K = 3;     %cell个数
-M = 4;     %每个cell里DAE个数
-r = 500;   %cell半径
+K = 3;     %cell number
+M = 4;     %users number
+r = 500;   %cell radius
 
-%参数设置
+%parameters
 n_dis = 5;
 gamma = 4;
 sigma_square = power(10, -107/10);
@@ -72,7 +72,6 @@ H = 150;
 HH = zeros(K,M);
 for i = 1 : K
     for j = 1 : M
-        %第i个cell中第j个无人机
         HH(i,j) = sqrt(g(total_cell, i, i, j, H, M));
     end
 end
